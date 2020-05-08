@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>{{ event_name }}</title>
+  </head>
+
+  <body>
+    <h1>{{ event_name }}</h1>
+    <h2 id="time">{{ friendly_time_string }}</h2>
+    
+    <script>
+      var time = {{ unix_epoch_time_offset }};
+      var countdown = document.getElementById("time");
+
+      setInterval(() => {
+        var now = new Date().getTime();
+        var difference = time - now;
+
+        countdown.innerText = toDisplayString(difference);
+      }, 1000);
+
+      function toDisplayString(time) {
+        var result = "";
+
+        time -= time % 1000;
+        time /= 1000;
+
+        var seconds = time % 60;
+        time -= seconds;
+        time /= 60;
+
+        var minutes = time % 60;
+        time -= minutes;
+        time /= 60;
+
+        var hours = time % 24;
+        time -= hours;
+        time /= 24;
+
+        var days = time;
+
+        return days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds.";
+      }
+    </script>
+  </body>
+</html>

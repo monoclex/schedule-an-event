@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Schedule an Event</title>
+  </head>
+
+  <body>
+    <h1>Schedule an Event</h1>
+
+    <a href="{{ event_url }}">go here</a>
+    <script>
+      document.getElementsByTagName("a")[0].href = document.getElementsByTagName("a")[0].href.substr(0, document.getElementsByTagName("a")[0].href.indexOf('?')) + "?time=" + (new Date().getTime() + (10 * 1000));
+    </script>
+  </body>
+</html>
