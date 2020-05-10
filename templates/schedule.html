@@ -1,14 +1,303 @@
 <html>
   <head>
     <title>Schedule an Event</title>
+
+    <style>
+      * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: auto;
+        padding: 32px;
+        text-align: center;
+      }
+
+      body {
+        text-align: center;
+      }
+
+      #time {
+        text-align: center;
+        display: inline-block;
+      }
+
+      .selectr-container {
+        display: inline-block;
+        width: 160px !important;
+        padding: 8px;
+      }
+
+      .selectr-selected {
+        z-index: auto !important;
+      }
+
+      .schedule-container.selectr-selected {
+        cursor: auto !important;
+      }
+
+      .schedule-button.selectr-selected::before {
+        border-style: none !important;
+      }
+
+      .schedule-label {
+        display: block !important;
+        text-align: center !important;
+        font-weight: bold;
+      }
+
+      .selectr-options-container {
+        top: auto !important;
+        left: auto !important;
+        width: 160px !important;
+      }
+
+      .date-label {
+        display: block !important;
+        text-align: center !important;
+        border: none;
+      }
+
+      /* hacks to fix spacing, probaly doesn't work on all devices lmao */
+      .cool-spacing {
+        top: -6px;
+      }
+
+      .cool-padding {
+        padding: 7px 28px 9px 14px !important;
+      }
+
+      #eventName {
+        padding: 8px;
+        width: calc(100% - 16px);
+      }
+    </style>
   </head>
 
   <body>
     <h1>Schedule an Event</h1>
 
-    <a href="{{ event_url }}">go here</a>
+    <div id="time">
+      <input id="eventName" type="text">
+
+      <br>
+
+      <div class="cool-spacing schedule-container selectr-container">
+        <div class="cool-padding schedule-button selectr-selected">
+          <input id="datepicker" class="date-label selectr-label"></input>
+        </div>
+      </div>
+
+      <select id="hour">
+        <option value="0">12 AM (0:00)</option>
+        <option value="1">1 AM (1:00)</option>
+        <option value="2">2 AM (2:00)</option>
+        <option value="3">3 AM (3:00)</option>
+        <option value="4">4 AM (4:00)</option>
+        <option value="5">5 AM (5:00)</option>
+        <option value="6">6 AM (6:00)</option>
+        <option value="7">7 AM (7:00)</option>
+        <option value="8">8 AM (8:00)</option>
+        <option value="9">9 AM (9:00)</option>
+        <option value="10">10 AM (10:00)</option>
+        <option value="11">11 AM (11:00)</option>
+        <option value="12">12 PM (12:00)</option>
+        <option value="13">1 PM (13:00)</option>
+        <option value="14">2 PM (14:00)</option>
+        <option value="15">3 PM (15:00)</option>
+        <option value="16">4 PM (16:00)</option>
+        <option value="17">5 PM (17:00)</option>
+        <option value="18">6 PM (18:00)</option>
+        <option value="19">7 PM (19:00)</option>
+        <option value="20">8 PM (20:00)</option>
+        <option value="21">9 PM (21:00)</option>
+        <option value="22">10 PM (22:00)</option>
+        <option value="23">11 PM (23:00)</option>
+      </select>
+
+      <select id="minute">
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+      </select>
+
+      <select id="second">
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+      </select>
+
+      <br>
+
+      <div class="schedule-container selectr-container">
+        <div onclick="go()" class="schedule-button selectr-selected">
+          <span class="schedule-label selectr-label">Schedule!</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/mobius1-selectr@2.4.13/dist/selectr.min.js"></script>
+    <script src="https://unpkg.com/js-datepicker@5.11.0/dist/datepicker.min.js"></script>
+
     <script>
-      document.getElementsByTagName("a")[0].href = document.getElementsByTagName("a")[0].href.substr(0, document.getElementsByTagName("a")[0].href.indexOf('?')) + "?time=" + (new Date().getTime() + (10 * 1000));
+      var day = document.getElementById('datepicker');
+      var hour = document.getElementById('hour');
+      var minute = document.getElementById('minute');
+      var second = document.getElementById('second');
+
+      var picker = datepicker(day);
+      new Selectr(hour);
+      new Selectr(minute);
+      new Selectr(second);
+
+      var now = new Date();
+      day.value = now.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }).replace(',', '').replace(',', '');
+
+      function go() {
+        const eventName = document.getElementById('eventName').value;
+        const date = new Date(day.value);
+        date.setHours(date.getHours() + hour.value);
+        date.setMinutes(date.getMinutes() + minute.value);
+        date.setSeconds(date.getSeconds() + second.value);
+
+        var modifiedEventName = "";
+        for (const char of eventName) {
+          if (char === ' ') {
+            modifiedEventName += '-';
+          }
+          else if (char === '-') {
+            modifiedEventName += ' ';
+          }
+          else {
+            modifiedEventName += char;
+          }
+        }
+
+        window.location.href += "event/" + encodeURIComponent(modifiedEventName) + "?time=" + date.getTime();
+      }
     </script>
+    
+    <link href="https://unpkg.com/mobius1-selectr@2.4.13/dist/selectr.min.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/js-datepicker@5.11.0/dist/datepicker.min.css" rel="stylesheet" type="text/css">
   </body>
 </html>

@@ -1,6 +1,15 @@
 <html>
   <head>
     <title>{{ event_name }}</title>
+
+    <style>
+      h1, h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: auto;
+        padding: 32px;
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
@@ -19,6 +28,7 @@
       }, 1000);
 
       function toDisplayString(time) {
+        var startTime = time;
         var result = "";
 
         time -= time % 1000;
@@ -38,7 +48,17 @@
 
         var days = time;
 
-        return days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds.";
+        var negativePrefix = startTime < 0 ? '-' : '';
+
+        return days + " days, " + negativePrefix + padNumber(hours) + ":" + padNumber(minutes) + ":" + padNumber(seconds) + " left.";
+      }
+
+      function padNumber(number) {
+        if (number < 0) {
+          return padNumber(number * -1);
+        }
+
+        return number.toString().padStart(2, '0');
       }
     </script>
   </body>
