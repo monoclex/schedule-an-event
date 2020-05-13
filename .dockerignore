@@ -1,0 +1,7 @@
+# ignore files we don't need to have in the container
+.git/
+target/
+.dockerignore
+.gitignore
+Dockerfile
+LICENSE
