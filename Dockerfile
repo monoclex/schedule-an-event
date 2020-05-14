@@ -15,10 +15,16 @@ RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-li
 
 # run the code
 FROM alpine:latest
+WORKDIR /app
 
 # copy the executable made in build to the
 COPY --from=cargo-build \
 	/src/schedule-an-event/target/x86_64-unknown-linux-musl/release/schedule-an-event \
-	/usr/local/bin/schedule-an-event
+	/app/schedule-an-event
 
-CMD ["schedule-an-event"]
+# copy Rocket.toml for configuration as well
+COPY --from=cargo-build \
+	/src/schedule-an-event/Rocket.toml \
+	/app/Rocket.toml
+
+ENTRYPOINT ["/app/schedule-an-event"]
