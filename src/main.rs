@@ -3,7 +3,6 @@
 #[macro_use] extern crate rocket;
 extern crate askama;
 
-use rocket::uri;
 use askama::Template;
 use std::time::{Duration, SystemTime};
 
@@ -49,7 +48,7 @@ fn event(mut name: String, time: u64) -> EventTemplate {
 
     let context = EventTemplate {
         event_name: name,
-        friendly_time_string: friendly_time_string,
+        friendly_time_string,
         unix_epoch_time_offset: time
     };
 
@@ -76,8 +75,14 @@ fn get_time(event_time_ms: u64) -> String {
 
     let days = time;
 
+    // TODO: this is ***nasty***
     if start_time < 0 {
-        return format!("-{} days, -{:0>2}:{:0>2}:{:0>2} left.", days, hours, minutes, seconds);
+        if days > 0 {
+            return format!("-{} days, -{:0>2}:{:0>2}:{:0>2} left.", days, hours, minutes, seconds);
+        } else {
+            // -0 days doesn't make sense
+            return format!("{} days, -{:0>2}:{:0>2}:{:0>2} left.", days, hours, minutes, seconds);
+        }
     } else {
         return format!("{} days, {:0>2}:{:0>2}:{:0>2} left.", days, hours, minutes, seconds);
     }
