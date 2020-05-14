@@ -1,5 +1,11 @@
+# NOTE:
 # https://rocket.rs/v0.4/guide/quickstart/#quickstart
 # rocket.rs requires a nightly version of rust
+#
+# NOTE:
+# https://shaneutt.com/blog/rust-fast-small-docker-image-builds/
+# this dockerfile was mainly inspired from that URL.
+# i'm not sure how good in terms of code quality it is, but it works so... /shrug
 
 # build the code
 FROM rustlang/rust:nightly as cargo-build
