@@ -25,6 +25,13 @@ struct EventTemplate {
     unix_epoch_time_offset: u64,
 }
 
+// TODO: is this really the best solution? does rocket have any kind of optional params?
+#[get("/event?<time>")]
+fn event_no_name(time: u64) -> EventTemplate {
+    let string = String::new();
+    event(string, time)
+}
+
 #[get("/event/<name>?<time>")]
 fn event(mut name: String, time: u64) -> EventTemplate {
     // rewrite 'name' so that all - become spaces (and vice versa)
@@ -121,6 +128,6 @@ fn event_time_since_epoch(event_time_ms: u64) -> SystemTime {
 
 fn main() {
     rocket::ignite()
-        .mount("/", routes![schedule, event])
+        .mount("/", routes![schedule, event_no_name, event])
         .launch();
 }
