@@ -26,11 +26,19 @@ struct EventTemplate {
     unix_epoch_time_offset: u64,
 }
 
+// apparently, even if i use Option<T> for the optional route, it doesn't work...?
+// so this is a weird workaround
+#[get("/event?<time>")]
+fn event_without_name(time: u64) -> EventTemplate {
+    event(Option::None, time)
+}
+
+// https://rocket.rs/v0.4/guide/requests/#optional-parameters
 #[get("/event/<name>?<time>")]
-fn event(mut name: Option<String>, time: u64) -> EventTemplate {
+fn event(name: Option<String>, time: u64) -> EventTemplate {
     let mut name = match name {
         Some(str) => str,
-        None => "Unnamed Event".to_string(),
+        None => "Unnamed-Event".to_string(),
     };
 
     // rewrite 'name' so that all - become spaces (and vice versa)
@@ -127,6 +135,6 @@ fn event_time_since_epoch(event_time_ms: u64) -> SystemTime {
 
 fn main() {
     rocket::ignite()
-        .mount("/", routes![schedule, event])
+        .mount("/", routes![schedule, event, event_without_name])
         .launch();
 }
