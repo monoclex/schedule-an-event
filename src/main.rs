@@ -5,6 +5,7 @@ extern crate askama;
 
 use askama::Template;
 use std::time::{Duration, SystemTime};
+use std::option::Option;
 
 #[derive(Template)]
 #[template(path = "schedule.html")]
@@ -25,15 +26,13 @@ struct EventTemplate {
     unix_epoch_time_offset: u64,
 }
 
-// TODO: is this really the best solution? does rocket have any kind of optional params?
-#[get("/event?<time>")]
-fn event_no_name(time: u64) -> EventTemplate {
-    let string = String::new();
-    event(string, time)
-}
-
 #[get("/event/<name>?<time>")]
-fn event(mut name: String, time: u64) -> EventTemplate {
+fn event(mut name: Option<String>, time: u64) -> EventTemplate {
+    let mut name = match name {
+        Some(str) => str,
+        None => "Unnamed Event".to_string(),
+    };
+
     // rewrite 'name' so that all - become spaces (and vice versa)
     unsafe {
         // UTF-8 guarantees that all valid ASCII (spaces, dashes) are NOT part of multi byte sequences
@@ -128,6 +127,6 @@ fn event_time_since_epoch(event_time_ms: u64) -> SystemTime {
 
 fn main() {
     rocket::ignite()
-        .mount("/", routes![schedule, event_no_name, event])
+        .mount("/", routes![schedule, event])
         .launch();
 }

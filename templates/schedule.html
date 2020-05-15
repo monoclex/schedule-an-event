@@ -17,8 +17,15 @@
       h1 {
         font-family: Arial, Helvetica, sans-serif;
         margin: auto;
-        padding: 32px;
+        padding: 18px;
         text-align: center;
+      }
+
+      span {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: auto;
+        text-align: center;
+        display: inherit;
       }
 
       body {
@@ -84,6 +91,8 @@
 
   <body>
     <h1>Schedule an Event</h1>
+    <span><i>Events are scheduled in your local time.</i></span>
+    <br>
 
     <div id="time">
       <input id="eventName" type="text">
@@ -96,7 +105,7 @@
         </div>
       </div>
 
-      <!-- 1. yes this is awful, 2. no i don't care right now lol -->
+      <!-- might be able to be generated with JS? -->
 
       <select id="hour">
         <option value="0">12 AM (0:00)</option>
