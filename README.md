@@ -20,16 +20,19 @@ cd schedule-an-event
 
 Next, choose which tooling you'd rather use.
 
-### Cargo
-If you already have rust installed, this is the much preferred path because the code that will be running can be compiled with cargo. [If you don't have rust installed, you can get it here.](https://rustup.rs/)
+### Cargo & NPM
+If you already have rust & npm installed, this is the much preferred path because the code that will be running can be compiled with cargo. [If you don't have rust installed, you can get it here.](https://rustup.rs/) [If you don't have NPM installed, you can get it here (NPM is bundled with Node).](https://nodejs.org/en/)
 
 ```shell
-# test your code
+# first, make sure you have parcel installed (for rust to execute npm run build)
+npm install -g parcel-bundler
+
+# test your code (build.rs will handle building the npm project)
 cargo +nightly run
 ```
 
 ### Docker
-If you don't have rust installed, you can simply test your code by building the dockerfile and running it.
+If you don't have rust installed, you can simply test your code by building the dockerfile and running it. The initial compile will be extremely slow, but future builds should be comparatively faster.
 
 ```shell
 # build the docker file
