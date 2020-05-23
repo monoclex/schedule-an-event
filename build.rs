@@ -27,9 +27,16 @@ fn build_client() -> Fallible<()> {
     let client = Path::new("./website-src");
     let current_dir = env::current_dir()?;
     env::set_current_dir(&client)?;
-
+    
     let npm_path = which("npm")?;
-    run(npm_path.to_str().unwrap(), |command| command.arg("run").arg("build"))?;
+    let npm_path = npm_path.to_str().unwrap();
+
+    // install node packages before building
+    if !Path::new("node_modules").exists() {
+        run(npm_path, |command| command.arg("i"))?;
+    }
+
+    run(npm_path, |command| command.arg("run").arg("build"))?;
 
     env::set_current_dir(current_dir)?;
     Ok(())

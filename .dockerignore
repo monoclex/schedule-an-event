@@ -1,7 +1,14 @@
 # ignore files we don't need to have in the container
 .git/
+.github/
 target/
+templates/*
+website-src/.cache
+website-src/dist
+website-src/node_modules
+website-src/.gitignore
 .dockerignore
 .gitignore
 Dockerfile
 LICENSE
+README.md
