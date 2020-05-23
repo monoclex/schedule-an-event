@@ -43,7 +43,7 @@ fn copy_to_templates_directory() -> Fallible<()> {
 }
 
 fn main() -> Fallible<()> {
-    println!("cargo:rerun-if-changed=website-src/src/");
+    println!("cargo:rerun-if-changed=website-src/src/*");
 
     build_client()?;
     copy_to_templates_directory()?;
