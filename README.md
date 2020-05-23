@@ -12,22 +12,36 @@ Scheduling an event should not be a complicated thing. Neither should the proces
 ## Contributing
 Contributions are welcome! If you don't know what to work on, maybe [try your hand at the things in the milestones?](https://github.com/SirJosh3917/schedule-an-event/milestones)
 
+To test your contribution, first make sure to clone the repository and set the working directory to inside of the repository.
 ```shell
 git clone "https://github.com/SirJosh3917/schedule-an-event.git"
 cd schedule-an-event
-
-# if you have Docker
-docker build .
-
-# if you have rust installed:
-# for debugging:
-cargo run
-
-# for release:
-cargo build --release
 ```
 
-[If you don't have rust installed, get it here.](https://rustup.rs/)
+Next, choose which tooling you'd rather use.
+
+### Cargo
+If you already have rust installed, this is the much preferred path because the code that will be running can be compiled with cargo. [If you don't have rust installed, you can get it here.](https://rustup.rs/)
+
+```shell
+# test your code
+cargo +nightly run
+```
+
+### Docker
+If you don't have rust installed, you can simply test your code by building the dockerfile and running it.
+
+```shell
+# build the docker file
+docker build --tag scheduleanevent:dev .
+
+# run it on localhost:8080
+docker run --name scheduleanevent-dev -p 8080:80 scheduleanevent:dev
+```
+
+If you're having trouble running the docker container with Docker Toolbox, this may be helpful: https://github.com/docker/for-win/issues/204#issuecomment-303461340
+
+If you're using the exact commands as above, set the host port to `5280` or something not in use, and the guest port to `8080` (because `8080:80` maps the container port 80 to the host port 8080, where the host is really a the VM, and then you map port `8080` on the VM to port `5280` on the host)
 
 ## Donations
 Donations happily accepted! You can give me your money on [Patreon](https://www.patreon.com/sirjosh3917) if you'd like to.
