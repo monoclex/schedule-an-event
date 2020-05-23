@@ -13,6 +13,10 @@ rocket = "0.4.4"
 version = "0.9.0"
 features = ["with-rocket", "mime", "mime_guess"]
 
+[build-dependencies]
+failure = "0.1.8"
+which = "3.1.1"
+
 [profile.release]
 lto = true
 codegen-units = 1
