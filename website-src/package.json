@@ -1,0 +1,21 @@
+{
+  "name": "schedule-an-event",
+  "version": "1.0.0",
+  "description": "Website source code of scheduleanevent.com",
+  "main": "index.js",
+  "scripts": {
+    "serve": "parcel .\\src\\event.html .\\src\\schedule.html",
+    "build": "parcel build .\\src\\event.html .\\src\\schedule.html"
+  },
+  "author": "SirJosh3917",
+  "license": "MIT",
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  },
+  "dependencies": {
+    "js-datepicker": "^5.14.0",
+    "mobius1-selectr": "^2.4.13",
+    "parcel-plugin-inliner": "^1.0.14",
+    "posthtml": "^0.13.0"
+  }
+}
