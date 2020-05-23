@@ -9,6 +9,7 @@ website-src/node_modules
 website-src/.gitignore
 .dockerignore
 .gitignore
+Cargo.lock
 Dockerfile
 LICENSE
 README.md

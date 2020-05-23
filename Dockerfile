@@ -73,7 +73,7 @@ RUN npm install -g parcel-bundler
 # cagro-build-deps doesn't work for us, so we just do a "dry build" of sorts.
 
 WORKDIR /src/schedule-an-event
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml .
 RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo +nightly build --release && rm src/main.rs
 
