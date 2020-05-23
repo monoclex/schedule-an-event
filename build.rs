@@ -43,6 +43,10 @@ fn build_client() -> Fallible<()> {
 }
 
 fn copy_to_templates_directory() -> Fallible<()> {
+    if !Path::new("templates").exists() {
+        std::fs::create_dir(Path::new("templates"))?;
+    }
+
     copy(Path::new("./website-src/dist/event.html"), Path::new("./templates/event.html"))?;
     copy(Path::new("./website-src/dist/schedule.html"), Path::new("./templates/schedule.html"))?;
 
