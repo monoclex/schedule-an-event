@@ -1,12 +1,10 @@
-name: Docker Image CI
+name: Deployment to scheduleanevent.com
 
 # Deployment copied from Scarlet
 # https://github.com/SirJosh3917/Scarlet/
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
