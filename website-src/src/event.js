@@ -1,12 +1,15 @@
 var time = parseInt("{{ unix_epoch_time_offset }}");
 var countdown = document.getElementById("time");
 
-setInterval(() => {
+displayEventTime();
+setInterval(displayEventTime, 1000);
+
+function displayEventTime() {
   var now = new Date().getTime();
   var difference = time - now;
 
   countdown.innerText = toDisplayString(difference);
-}, 1000);
+}
 
 function toDisplayString(time) {
   var startTime = time;

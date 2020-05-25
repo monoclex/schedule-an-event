@@ -19,7 +19,11 @@
 
   <body>
     <h1>{{ event_name }}</h1>
-    <h2 id="time">{{ friendly_time_string }}</h2>
+
+    <!-- leave it blank so the JS can fill it in later. -->
+    <!-- it's an eyesore for the text to suddenly change -->
+    <!-- heck, the browser may run the JS before the DOM paints thanks to inlining the JS -->
+    <h2 id="time"></h2>
 
     <script src="event.js"></script>
   </body>
