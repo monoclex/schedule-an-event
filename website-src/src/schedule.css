@@ -1,0 +1,85 @@
+/* TODO: comment why things are CSS'd like this lol */
+
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: auto;
+	padding: 18px;
+	text-align: center;
+}
+
+span {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: auto;
+	text-align: center;
+	display: inherit;
+}
+
+body {
+	text-align: center;
+}
+
+#time {
+	text-align: center;
+	display: inline-block;
+}
+
+.selectr-container {
+	display: inline-block;
+	width: 160px !important;
+	padding: 8px;
+}
+
+.selectr-selected {
+	z-index: auto !important;
+}
+
+.schedule-container.selectr-selected {
+	cursor: auto !important;
+}
+
+.schedule-button.selectr-selected::before {
+	border-style: none !important;
+}
+
+.schedule-label {
+	display: block !important;
+	text-align: center !important;
+	font-weight: bold;
+}
+
+.selectr-options-container {
+	top: auto !important;
+	left: auto !important;
+	width: 160px !important;
+}
+
+.date-label {
+	display: block !important;
+	text-align: center !important;
+	border: none;
+}
+
+/* hacks to fix spacing, probaly doesn't work on all devices lmao */
+.cool-spacing {
+	top: -6px;
+}
+
+.cool-padding {
+	padding: 7px 28px 9px 14px !important;
+}
+
+#eventName {
+	padding: 8px;
+	width: calc(100% - 16px);
+}
+
+#forkribbon {
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+
