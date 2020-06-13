@@ -34,7 +34,9 @@ function toDisplayString(time) {
 
   var negativePrefix = startTime < 0 ? '-' : '';
 
-  return days + " days, " + negativePrefix + padNumber(hours) + ":" + padNumber(minutes) + ":" + padNumber(seconds) + " left.";
+  var plural = days === 1 ? '' : 's';
+
+  return days + " day" + plural + ", " + negativePrefix + padNumber(hours) + ":" + padNumber(minutes) + ":" + padNumber(seconds) + " left.";
 }
 
 function padNumber(number) {

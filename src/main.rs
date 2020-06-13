@@ -4,7 +4,6 @@
 extern crate askama;
 
 use askama::Template;
-use std::time::{Duration, SystemTime};
 use std::option::Option;
 
 /// Defines a template with no values. This allows us to make use of the existing "template" infrastructure when
