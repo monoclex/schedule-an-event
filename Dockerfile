@@ -66,6 +66,10 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
 # install parcel bundler
 RUN npm install -g parcel-bundler
 
+# the newest version of rust nightly seems to have this code segfault
+# so i've chosen a version of rust nightly that happens to work
+RUN rustup toolchain install nightly-2020-06-23
+
 # this next section is so that way the build/test pipeline with docker can be faster
 # by caching rust dependencies
 # bump https://github.com/rust-lang/cargo/issues/2644 for this feature to be built into cargo
@@ -78,15 +82,15 @@ RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo +nightly build --release && rm src/main.rs
 
 COPY . .
-RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
+RUN cargo build --release --target=x86_64-unknown-linux-gnu
 
 # run the code
-FROM alpine:latest
+FROM debian:stable
 WORKDIR /app
 
 # copy the executable made in build to the
 COPY --from=cargo-build \
-	/src/schedule-an-event/target/x86_64-unknown-linux-musl/release/schedule-an-event \
+	/src/schedule-an-event/target/x86_64-unknown-linux-gnu/release/schedule-an-event \
 	/app/schedule-an-event
 
 # copy Rocket.toml for configuration as well
